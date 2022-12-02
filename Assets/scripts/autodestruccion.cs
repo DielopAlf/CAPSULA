@@ -15,6 +15,7 @@ public class autodestruccion : MonoBehaviour
     float temporizador;
     bool estaActiva;
     public GameObject particulas;
+    public ParticleSystem sistemaParticulas;
         
     
     
@@ -23,7 +24,7 @@ public class autodestruccion : MonoBehaviour
 
     void Start()
     {
-        aparecer();
+        Aparecer();
     }
 
     // Update is called once per frame
@@ -42,8 +43,10 @@ public class autodestruccion : MonoBehaviour
             desaparecer();
         }
     }
-    public void aparecer()
+    public void Aparecer()
     {
+        //sistemaParticulas.Play();
+        //sistemaParticulas.Stop();
         malla.SetActive(true);
 
         temporizador = Random.Range(tiempominimo, tiempoMaximo);
@@ -52,34 +55,47 @@ public class autodestruccion : MonoBehaviour
         BarraDeVida.gameObject.SetActive(true);
         tiempo.gameObject.SetActive(true);
         particulas.SetActive(false);
+        LeanTween.scale(gameObject, Vector3.zero, 0.6f).setOnComplete(Activar);
+
     }
-    public void desaparecer()
-    { 
-        if(estaActiva == true)
+    void Activar()
+    {
+
+        if (particulas.activeSelf == false)
         {
-            estaActiva = false;
-            malla.SetActive(false);
-            BarraDeVida.gameObject.SetActive(false);
-            tiempo.gameObject.SetActive(false);
-            LeanTween.scale(gameObject, Vector3.one * 1.5f, 0.0f);
             particulas.SetActive(true);
-
-
-            StartCoroutine(Resetearcapsula());
-
 
         }
 
-
     }
+    public void desaparecer()
+    {
+        if (estaActiva == true)
+        {
+            estaActiva = false;
+//            malla.SetActive(false);
+            BarraDeVida.gameObject.SetActive(false);
+            tiempo.gameObject.SetActive(false);
+            LeanTween.scale(gameObject, Vector3.zero, 1.0f).setOnComplete(()=>{
+                malla.SetActive(false);
+                StartCoroutine(Resetearcapsula());
+            });
+
+
+
+            
+
+        }
+    }
+   
 
 
     public IEnumerator Resetearcapsula()
     {
         yield return new WaitForSeconds(Random.Range(1f, 6f));
-        aparecer();
-        LeanTween.scale(gameObject, Vector3.one * 0.0f, 1.5f);
-        particulas.SetActive(true);
-    }
+        Aparecer();
+        LeanTween.scale(gameObject, Vector3.zero, 1.0f).setOnComplete(() => {
+            malla.SetActive(false);
+        }
 
 }
