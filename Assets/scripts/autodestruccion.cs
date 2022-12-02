@@ -78,6 +78,7 @@ public class autodestruccion : MonoBehaviour
             tiempo.gameObject.SetActive(false);
             LeanTween.scale(gameObject, Vector3.zero, 1.0f).setOnComplete(()=>{
                 malla.SetActive(false);
+                
                 StartCoroutine(Resetearcapsula());
             });
 
@@ -94,8 +95,5 @@ public class autodestruccion : MonoBehaviour
     {
         yield return new WaitForSeconds(Random.Range(1f, 6f));
         Aparecer();
-        LeanTween.scale(gameObject, Vector3.zero, 1.0f).setOnComplete(() => {
-            malla.SetActive(false);
-        }
-
+    }
 }
