@@ -973,6 +973,10 @@ PrefabInstance:
       propertyPath: lengthInSec
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7718725421693078021, guid: 29c8068ab216b83488a0ebe7d000dc2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.38
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29c8068ab216b83488a0ebe7d000dc2c, type: 3}
 --- !u!1001 &920432369658513814
@@ -985,7 +989,7 @@ PrefabInstance:
     - target: {fileID: 551403486484235676, guid: 29c8068ab216b83488a0ebe7d000dc2c, type: 3}
       propertyPath: particulas
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 100006, guid: 3ac3af0756bb3654690122060f9cef08, type: 3}
     - target: {fileID: 721813914559520398, guid: 29c8068ab216b83488a0ebe7d000dc2c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

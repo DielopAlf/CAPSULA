@@ -37,6 +37,7 @@ public class autodestruccion : MonoBehaviour
             BarraDeVida.value = temporizador;
             tiempo.text = temporizador.ToString("0.00");
             particulas.SetActive(true);
+            Instantiate (particulas) ;
         }
         else
         {
@@ -55,7 +56,6 @@ public class autodestruccion : MonoBehaviour
         BarraDeVida.gameObject.SetActive(true);
         tiempo.gameObject.SetActive(true);
         particulas.SetActive(false);
-        LeanTween.scale(gameObject, Vector3.zero, 0.6f).setOnComplete(Activar);
 
     }
     void Activar()
@@ -95,5 +95,7 @@ public class autodestruccion : MonoBehaviour
     {
         yield return new WaitForSeconds(Random.Range(1f, 6f));
         Aparecer();
+        LeanTween.scale(gameObject, Vector3.zero, 0.6f).setOnComplete(Activar);
+
     }
 }

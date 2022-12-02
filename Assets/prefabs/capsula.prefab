@@ -149,7 +149,8 @@ MonoBehaviour:
   BarraDeVida: {fileID: 1156734078053318056}
   tiempo: {fileID: 8752247375296280554}
   malla: {fileID: 819309088331607280}
-  particulas: {fileID: 920432370769591169}
+  particulas: {fileID: 100006, guid: 8f2875655f485be4d8438962a9d306bc, type: 3}
+  sistemaParticulas: {fileID: 0}
 --- !u!198 &7088626789495687499
 ParticleSystem:
   m_ObjectHideFlags: 0
