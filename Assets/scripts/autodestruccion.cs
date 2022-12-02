@@ -13,7 +13,12 @@ public class autodestruccion : MonoBehaviour
     public TextMeshProUGUI tiempo;
     public GameObject malla;
     float temporizador;
-    bool estaActiva; 
+    bool estaActiva;
+    public GameObject particulas;
+        
+    
+    
+
 
 
     void Start()
@@ -29,8 +34,8 @@ public class autodestruccion : MonoBehaviour
             temporizador = temporizador - Time.deltaTime;
             Debug.Log(temporizador);
             BarraDeVida.value = temporizador;
-            tiempo.text = temporizador.ToString("0.00");  
-
+            tiempo.text = temporizador.ToString("0.00");
+            particulas.SetActive(true);
         }
         else
         {
@@ -46,6 +51,7 @@ public class autodestruccion : MonoBehaviour
         estaActiva= true;
         BarraDeVida.gameObject.SetActive(true);
         tiempo.gameObject.SetActive(true);
+        particulas.SetActive(false);
     }
     public void desaparecer()
     { 
@@ -55,7 +61,8 @@ public class autodestruccion : MonoBehaviour
             malla.SetActive(false);
             BarraDeVida.gameObject.SetActive(false);
             tiempo.gameObject.SetActive(false);
-
+            LeanTween.scale(gameObject, Vector3.one * 1.5f, 0.0f);
+            particulas.SetActive(true);
 
 
             StartCoroutine(Resetearcapsula());
@@ -71,8 +78,8 @@ public class autodestruccion : MonoBehaviour
     {
         yield return new WaitForSeconds(Random.Range(1f, 6f));
         aparecer();
-
-
+        LeanTween.scale(gameObject, Vector3.one * 0.0f, 1.5f);
+        particulas.SetActive(true);
     }
 
 }
