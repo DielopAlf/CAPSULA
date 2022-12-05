@@ -146,7 +146,7 @@ MonoBehaviour:
   BarraDeVida: {fileID: 1156734078053318056}
   tiempo: {fileID: 8752247375296280554}
   malla: {fileID: 819309088331607280}
-  particulas: {fileID: 5979832685758089939, guid: d5476e7e70d2685469d2bd49080798b0, type: 3}
+  particulas: {fileID: 10804242138257315, guid: d5476e7e70d2685469d2bd49080798b0, type: 3}
 --- !u!1 &991321421008755029
 GameObject:
   m_ObjectHideFlags: 0

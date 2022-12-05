@@ -14,9 +14,9 @@ public class autodestruccion : MonoBehaviour
     public GameObject malla;
     float temporizador;
     bool estaActiva;
-    public GameObject particulas;
-   // public ParticleSystem sistemaParticulas;
-   
+    //public GameObject particulas;
+    // public ParticleSystem sistemaParticulas;
+    [SerializeField] private ParticleSystem particulas;
         
     
     
@@ -77,6 +77,9 @@ public class autodestruccion : MonoBehaviour
 //            malla.SetActive(false);
             BarraDeVida.gameObject.SetActive(false);
             tiempo.gameObject.SetActive(false);
+
+            particulas.Play();
+            //Instantiate(particulas, gameObject.transform.position, Quaternion.identity);
             LeanTween.scale(gameObject, Vector3.zero, 1.0f).setOnComplete(()=>{
                 malla.SetActive(false);
                 
