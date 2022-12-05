@@ -15,7 +15,8 @@ public class autodestruccion : MonoBehaviour
     float temporizador;
     bool estaActiva;
     public GameObject particulas;
-    public ParticleSystem sistemaParticulas;
+   // public ParticleSystem sistemaParticulas;
+   
         
     
     
@@ -36,8 +37,8 @@ public class autodestruccion : MonoBehaviour
             Debug.Log(temporizador);
             BarraDeVida.value = temporizador;
             tiempo.text = temporizador.ToString("0.00");
-            particulas.SetActive(true);
-            Instantiate (particulas) ;
+            //particulas.SetActive(true);
+            //Instantiate (particulas);
         }
         else
         {
@@ -55,17 +56,17 @@ public class autodestruccion : MonoBehaviour
         estaActiva= true;
         BarraDeVida.gameObject.SetActive(true);
         tiempo.gameObject.SetActive(true);
-        particulas.SetActive(false);
+        //particulas.SetActive(false);
 
     }
     void Activar()
     {
+        //Instantiate(particulas, gameObject.transform.position, Quaternion.identity);
+        //if (particulas.activeSelf == false)
+       // {
+            //particulas.SetActive(true);
 
-        if (particulas.activeSelf == false)
-        {
-            particulas.SetActive(true);
-
-        }
+       // }
 
     }
     public void desaparecer()
@@ -95,6 +96,7 @@ public class autodestruccion : MonoBehaviour
     {
         yield return new WaitForSeconds(Random.Range(1f, 6f));
         Aparecer();
+        Instantiate(particulas, gameObject.transform.position, Quaternion.identity);
         LeanTween.scale(gameObject, Vector3.zero, 0.6f).setOnComplete(Activar);
 
     }
