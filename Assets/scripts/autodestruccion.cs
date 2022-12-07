@@ -14,9 +14,8 @@ public class autodestruccion : MonoBehaviour
     public GameObject malla;
     float temporizador;
     bool estaActiva;
-    //public GameObject particulas;
+    public GameObject particulas;
     // public ParticleSystem sistemaParticulas;
-    [SerializeField] private ParticleSystem particulas;
         
     
     
@@ -37,8 +36,7 @@ public class autodestruccion : MonoBehaviour
             Debug.Log(temporizador);
             BarraDeVida.value = temporizador;
             tiempo.text = temporizador.ToString("0.00");
-            //particulas.SetActive(true);
-            //Instantiate (particulas);
+           
         }
         else
         {
@@ -50,7 +48,7 @@ public class autodestruccion : MonoBehaviour
         //sistemaParticulas.Play();
         //sistemaParticulas.Stop();
         malla.SetActive(true);
-
+        gameObject.transform.localScale = Vector3.one;
         temporizador = Random.Range(tiempominimo, tiempoMaximo);
         BarraDeVida.maxValue= temporizador;
         estaActiva= true;
@@ -78,11 +76,12 @@ public class autodestruccion : MonoBehaviour
             BarraDeVida.gameObject.SetActive(false);
             tiempo.gameObject.SetActive(false);
 
-            particulas.Play();
-            //Instantiate(particulas, gameObject.transform.position, Quaternion.identity);
+            particulas.SetActive (true);
+ 
             LeanTween.scale(gameObject, Vector3.zero, 1.0f).setOnComplete(()=>{
                 malla.SetActive(false);
-                
+                particulas.SetActive(false);
+
                 StartCoroutine(Resetearcapsula());
             });
 
@@ -100,7 +99,7 @@ public class autodestruccion : MonoBehaviour
         yield return new WaitForSeconds(Random.Range(1f, 6f));
         Aparecer();
         Instantiate(particulas, gameObject.transform.position, Quaternion.identity);
-        LeanTween.scale(gameObject, Vector3.zero, 0.6f).setOnComplete(Activar);
+        //LeanTween.scale(gameObject, Vector3.zero, 0.6f).setOnComplete(Activar);
 
     }
 }
