@@ -24,7 +24,11 @@ public class autodestruccion : MonoBehaviour
 
     void Start()
     {
-        Aparecer();
+        temporizador = Random.Range(tiempominimo, tiempoMaximo);
+        BarraDeVida.maxValue= temporizador;
+        estaActiva= true;
+        BarraDeVida.gameObject.SetActive(true);
+        tiempo.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -33,7 +37,7 @@ public class autodestruccion : MonoBehaviour
         if (temporizador > 0f)
         {
             temporizador = temporizador - Time.deltaTime;
-            Debug.Log(temporizador);
+            //Debug.Log(temporizador);
             BarraDeVida.value = temporizador;
             tiempo.text = temporizador.ToString("0.00");
            
@@ -45,34 +49,32 @@ public class autodestruccion : MonoBehaviour
     }
     public void Aparecer()
     {
-        //sistemaParticulas.Play();
-        //sistemaParticulas.Stop();
+    
         malla.SetActive(true);
-        gameObject.transform.localScale = Vector3.one;
+        particulas.SetActive(true);
+
+        LeanTween.scale(gameObject, Vector3.one, 1.0f).setOnComplete(()=>
+        {
+               
+                particulas.SetActive(false);
+
+        });
+         
         temporizador = Random.Range(tiempominimo, tiempoMaximo);
         BarraDeVida.maxValue= temporizador;
         estaActiva= true;
         BarraDeVida.gameObject.SetActive(true);
         tiempo.gameObject.SetActive(true);
-        //particulas.SetActive(false);
+        
 
     }
-    void Activar()
-    {
-        //Instantiate(particulas, gameObject.transform.position, Quaternion.identity);
-        //if (particulas.activeSelf == false)
-       // {
-            //particulas.SetActive(true);
-
-       // }
-
-    }
+   
     public void desaparecer()
     {
         if (estaActiva == true)
         {
             estaActiva = false;
-//            malla.SetActive(false);
+            
             BarraDeVida.gameObject.SetActive(false);
             tiempo.gameObject.SetActive(false);
 
@@ -98,8 +100,6 @@ public class autodestruccion : MonoBehaviour
     {
         yield return new WaitForSeconds(Random.Range(1f, 6f));
         Aparecer();
-        Instantiate(particulas, gameObject.transform.position, Quaternion.identity);
-        //LeanTween.scale(gameObject, Vector3.zero, 0.6f).setOnComplete(Activar);
 
     }
 }
